@@ -32,29 +32,15 @@ public class InserirCategoria extends HttpServlet {
         String retorno = dao.inserir(categoria);
 
         if (retorno.equals("sucesso")) {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("index.html");
         } else {
             PrintWriter out = response.getWriter();
             out.print("<html>");
             out.print("<h2>Não foi possível inserir a categoria!</h2>");
             out.print("</brz");
-            out.print("<a href = 'index.jsp'> Voltar </a>");
+            out.print("<a href = 'index.html'> Voltar </a>");
             out.print("</html>");
         }
     }
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            listaCategoria(request, response);
-        } catch (SQLException ex) {
-            throw new ServletException(ex);
-        }
-    }
-    private void listaCategoria(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException, ServletException {
-        List<Categoria> listaCategoria = dao.Listar();
-        request.setAttribute("listaCategoria", listaCategoria);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-        dispatcher.forward(request, response);
-    }
+
 }
